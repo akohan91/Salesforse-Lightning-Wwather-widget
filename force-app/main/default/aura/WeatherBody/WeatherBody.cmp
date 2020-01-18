@@ -1,0 +1,45 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,force:hasRecordId"
+    controller="WeatherControllerBack">
+    <aura:handler name="init" action="{!c.doInit}" value="{!this}" />
+
+    <aura:attribute name="weather" type="Map" />
+    <lightning:layout multipleRows="true" class="wrapper">
+        <!-- CITY -->
+        <lightning:layoutItem size="12">
+            <div class="city">{!v.weather.City}</div>
+        </lightning:layoutItem>
+        <!-- DATE -->
+        <lightning:layoutItem size="12" class="date">
+            <lightning:formattedDateTime value="{!v.weather.Dt}" year="2-digit" month="short" day="2-digit" weekday="long"/>
+        </lightning:layoutItem>
+
+        <!-- MAIN INFO -->
+        <div class="mainWeather">
+            <lightning:layoutItem size="6" class="weatherIcon">
+                <img src="{!v.weather.Icon}" />
+            </lightning:layoutItem>
+
+            <lightning:layoutItem size="6" class="weatherMainInfo">
+                <span class="temperatura">{!v.weather.Temperature}</span>
+                <span>{!v.weather.Main}, {!v.weather.Description}</span>
+            </lightning:layoutItem>
+        </div>
+
+        <!-- MORE INFO -->
+        <lightning:layoutItem size="4">
+            <lightning:layoutItem size="12" class="pressure">
+                Pressure: {!v.weather.Pressure}
+            </lightning:layoutItem>
+            <lightning:layoutItem size="12" class="humidity">
+                Humidity: {!v.weather.Humidity}
+            </lightning:layoutItem>
+            <lightning:layoutItem size="12" class="speed">
+                Winter: {!v.weather.WinterSpeed}
+            </lightning:layoutItem>
+        </lightning:layoutItem>
+        <!-- SETTINGS -->
+        <lightning:layoutItem size="12">
+            <lightning:buttonIcon iconName="utility:settings" variant="bare" alternativeText="Settings" />
+        </lightning:layoutItem>
+    </lightning:layout>
+</aura:component>

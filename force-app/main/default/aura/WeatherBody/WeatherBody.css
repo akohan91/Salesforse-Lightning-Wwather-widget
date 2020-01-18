@@ -1,0 +1,51 @@
+.THIS.wrapper{
+    
+    padding: 15px;
+    background: #fff;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: #000;
+    font-size: 16px;
+    font-weight: 300;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 3px 0px #333;
+}
+.THIS .city{
+    font-size: 25px;
+}
+
+.THIS .temperatura{
+    position: relative;
+    font-size: 50px;
+}
+
+.THIS .temperatura::after{
+    content: "";
+    display: block;
+    position: absolute;
+    top: 10px;
+    right: -10px;
+    width: 10px;
+    height: 10px;
+    border: solid 1px #000;
+    border-radius: 50%;
+}
+
+
+.THIS .mainWeather{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.THIS .weatherIcon, 
+.THIS .weatherMainInfo,
+.THIS .date,
+.THIS .city{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
