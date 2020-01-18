@@ -9,11 +9,19 @@
     font-size: 16px;
     font-weight: 300;
     border-radius: 0.5rem;
-    box-shadow: 0 0 3px 0px #333;
+    box-shadow: 1px 1px 4px -1px #999;
 }
 .THIS .city{
     font-size: 25px;
 }
+.THIS .settings{
+    text-align: right;
+}
+
+.THIS .dark {
+    color: #000;
+}
+
 
 .THIS .temperatura{
     position: relative;

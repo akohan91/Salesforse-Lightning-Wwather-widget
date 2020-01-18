@@ -1,9 +1,17 @@
 <aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,force:hasRecordId"
     controller="WeatherControllerBack">
-    <aura:handler name="init" action="{!c.doInit}" value="{!this}" />
+    <aura:handler name="init" action="{!c.getWetherInfo}" value="{!this}" />
 
     <aura:attribute name="weather" type="Object" />
     <lightning:layout multipleRows="true" class="wrapper">
+        <!-- HEADER -->
+        <lightning:layoutItem size="8">
+            <lightning:badge label="Weather"/>
+        </lightning:layoutItem>
+        <lightning:layoutItem size="4" class="settings">
+            <lightning:buttonIcon iconName="utility:replace" onclick="{!c.getWetherInfo}" variant="bare" size="large" iconClass="dark" alternativeText="Settings"/>
+            <lightning:buttonIcon iconName="utility:settings" variant="bare" size="large" iconClass="dark" alternativeText="Settings"/>
+        </lightning:layoutItem>
         <!-- CITY -->
         <lightning:layoutItem size="12">
             <div class="city">{!v.weather.name}</div>

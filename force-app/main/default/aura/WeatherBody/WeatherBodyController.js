@@ -1,5 +1,5 @@
 ({
-	doInit : function(component, event, helper) {
+	getWetherInfo : function(component, event, helper) {
 		var action = component.get("c.getWeather");
 
 		action.setCallback(this, function(response) {
