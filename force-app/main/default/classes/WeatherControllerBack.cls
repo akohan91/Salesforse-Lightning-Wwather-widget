@@ -4,8 +4,8 @@ public with sharing class WeatherControllerBack {
     private static weathwidget__Weather_widget__mdt metaSet = [SELECT weathwidget__DefaultCity__c FROM weathwidget__Weather_widget__mdt];
 
     @AuraEnabled
-    public static Map<String, String> getWeather() {
-        Map<String, String> weatherMap = WeatherCallouts.getWeather(cityCountry());
+    public static Object getWeather() {
+        Object weatherMap = WeatherCallouts.getWeather(cityCountry());
 
         return weatherMap;
     }

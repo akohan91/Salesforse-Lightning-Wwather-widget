@@ -5,7 +5,8 @@
 		action.setCallback(this, function(response) {
 			var state = response.getState();
 			if (state === "SUCCESS") {
-				component.set("v.weather", response.getReturnValue());
+				var weatherInfo = JSON.parse(response.getReturnValue());
+				helper.setWeather(component, weatherInfo);
 			}
 			else {
 				console.log("Failed with state: " + state);

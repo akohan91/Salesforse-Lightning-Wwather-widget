@@ -2,45 +2,45 @@
     controller="WeatherControllerBack">
     <aura:handler name="init" action="{!c.doInit}" value="{!this}" />
 
-    <aura:attribute name="weather" type="Map" />
+    <aura:attribute name="weather" type="Object" />
     <lightning:layout multipleRows="true" class="wrapper">
         <!-- CITY -->
         <lightning:layoutItem size="12">
-            <div class="city">{!v.weather.City}</div>
+            <div class="city">{!v.weather.name}</div>
         </lightning:layoutItem>
         <!-- DATE -->
         <lightning:layoutItem size="12" class="date">
-            <lightning:formattedDateTime value="{!v.weather.Dt}" year="2-digit" month="short" day="2-digit" weekday="long"/>
+            <lightning:formattedDateTime value="{!v.weather.dt}" year="2-digit" month="short" day="2-digit" weekday="long"/>
         </lightning:layoutItem>
 
         <!-- MAIN INFO -->
         <div class="mainWeather">
             <lightning:layoutItem size="6" class="weatherIcon">
-                <img src="{!v.weather.Icon}" />
+                <img src="{!v.weather.weather.icon}" />
             </lightning:layoutItem>
 
             <lightning:layoutItem size="6" class="weatherMainInfo">
-                <span class="temperatura">{!v.weather.Temperature}</span>
-                <span>{!v.weather.Main}, {!v.weather.Description}</span>
+                <span class="temperatura">
+                    <img class="tempIcon" src="{!$Resource.weathericons + '/temp.svg'}"/>
+                    {!v.weather.main.temp}
+                </span>
+                <span>{!v.weather.weather.main}, {!v.weather.weather.description}</span>
             </lightning:layoutItem>
         </div>
 
         <!-- MORE INFO -->
-        <p>Some text</p>
-        <lightning:layoutItem size="4">
-            <lightning:layoutItem size="12" class="pressure">
-                Pressure: {!v.weather.Pressure}
+        <lightning:layoutItem size="12" class="descrBox">
+            <lightning:layoutItem size="4">
+                <img class="descrIcon" src="{!$Resource.weathericons + '/pressure.svg'}"/> {!v.weather.main.pressure} mm Hg
             </lightning:layoutItem>
-            <lightning:layoutItem size="12" class="humidity">
-                Humidity: {!v.weather.Humidity}
+            <lightning:layoutItem size="4">
+                <img class="descrIcon" src="{!$Resource.weathericons + '/humidity.svg'}"/> {!v.weather.main.humidity} %
             </lightning:layoutItem>
-            <lightning:layoutItem size="12" class="speed">
-                Winter: {!v.weather.WinterSpeed}
+            <lightning:layoutItem size="4">
+                <img class="descrIcon" src="{!$Resource.weathericons + '/wind.svg'}"/>
+                {!v.weather.wind.speed} m/s
             </lightning:layoutItem>
         </lightning:layoutItem>
         <!-- SETTINGS -->
-        <lightning:layoutItem size="12">
-            <lightning:buttonIcon iconName="utility:settings" variant="bare" alternativeText="Settings" />
-        </lightning:layoutItem>
     </lightning:layout>
 </aura:component>

@@ -1,7 +1,7 @@
 .THIS.wrapper{
     
     padding: 15px;
-    background: #fff;
+    background: #00a1e0;
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -48,4 +48,21 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.THIS .descrIcon{
+    height: 18px;
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
+.THIS .tempIcon{
+    height: 50px;
+    margin-right: 10px;
+}
+
+.THIS .descrBox{
+    display: flex;
+    text-align: center;
+    font-size: 18px;
 }
