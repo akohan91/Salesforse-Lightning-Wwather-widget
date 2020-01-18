@@ -26,6 +26,7 @@
         </div>
 
         <!-- MORE INFO -->
+        <p>Some text</p>
         <lightning:layoutItem size="4">
             <lightning:layoutItem size="12" class="pressure">
                 Pressure: {!v.weather.Pressure}
