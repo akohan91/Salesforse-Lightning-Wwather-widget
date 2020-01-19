@@ -1,5 +1,5 @@
 .THIS.wrapper{
-    
+    position: relative;
     padding: 15px;
     background: #00a1e0;
     background-position: center;
@@ -11,6 +11,11 @@
     border-radius: 0.5rem;
     box-shadow: 1px 1px 4px -1px #999;
 }
+
+.THIS .spinnerBlock{
+    border-radius: 0.5rem;
+}
+
 .THIS .city{
     font-size: 25px;
 }

@@ -9,5 +9,12 @@
 		weatherInfo.main.pressure = Math.round(weatherInfo.main.pressure / 1.333);
 		
 		component.set("v.weather", weatherInfo);
+	},
+	waiting : function (component, event, helper) {
+		component.set("v.spinner", true);
+	},
+
+	doneWaiting : function (component, event, helper) {
+		component.set("v.spinner", false);
 	}
 })

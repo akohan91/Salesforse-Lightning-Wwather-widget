@@ -1,13 +1,21 @@
 <aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,force:hasRecordId"
     controller="WeatherControllerBack">
+    <!-- HEANDRELS -->
     <aura:handler name="init" action="{!c.getWetherInfo}" value="{!this}" />
-
+    <!-- ATTRIBUTES -->
     <aura:attribute name="weather" type="Object" />
+    <aura:attribute name="spinner" type="boolean" default="true"/>
+    <!-- MAIN layout -->
     <lightning:layout multipleRows="true" class="wrapper">
+        <!-- SPINNER -->
+        <aura:renderIf isTrue="{!v.spinner}">
+            <lightning:spinner alternativeText="Loading..." size="large" class="spinnerBlock"/>
+        </aura:renderIf>
         <!-- HEADER -->
         <lightning:layoutItem size="8">
             <lightning:badge label="Weather"/>
         </lightning:layoutItem>
+        <!-- SETTINGS -->
         <lightning:layoutItem size="4" class="settings">
             <lightning:buttonIcon iconName="utility:replace" onclick="{!c.getWetherInfo}" variant="bare" size="large" iconClass="dark" alternativeText="Settings"/>
             <lightning:buttonIcon iconName="utility:settings" variant="bare" size="large" iconClass="dark" alternativeText="Settings"/>
@@ -49,6 +57,5 @@
                 {!v.weather.wind.speed} m/s
             </lightning:layoutItem>
         </lightning:layoutItem>
-        <!-- SETTINGS -->
     </lightning:layout>
 </aura:component>
