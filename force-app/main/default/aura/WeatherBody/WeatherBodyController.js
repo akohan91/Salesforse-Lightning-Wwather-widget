@@ -1,20 +1,25 @@
 ({
-	getWetherInfo : function(component, event, helper) {
-		helper.waiting(component);
-		var action = component.get("c.getWeather");
+	refresh : function (component, event, helper) {
+		helper.getWetherInfo(component);
+	},
 
-		action.setCallback(this, function(response) {
-			var state = response.getState();
-			if (state === "SUCCESS") {
-				var weatherInfo = JSON.parse(response.getReturnValue());
-				helper.setWeather(component, weatherInfo);
-				helper.doneWaiting(component);
-			}
-			else {
-				console.log("Failed with state: " + state);
-			}
-		});
+	setCity: function (component, event, helper) {
+		var validField 		= component.find("cityForm").get("v.validity").valid;
+		var isCityDefault 	= component.find("cityDefault").get("v.checked");
+		var city = component.get("v.City");
 
-		$A.enqueueAction(action);
-	}
+		if (validField && isCityDefault){
+			helper.setDefaultCity(component, city);
+		} else if(validField && !isCityDefault){
+			helper.getWetherInfo(component, city);
+			component.set("v.showForm", false);
+		}
+	},
+
+	showForm : function (component) {
+		var isShowForm = component.get("v.showForm");
+		
+		component.set("v.showForm", isShowForm ? false : true);
+
+	},
 })

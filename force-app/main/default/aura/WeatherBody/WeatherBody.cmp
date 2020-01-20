@@ -1,10 +1,12 @@
 <aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,force:hasRecordId"
     controller="WeatherControllerBack">
     <!-- HEANDRELS -->
-    <aura:handler name="init" action="{!c.getWetherInfo}" value="{!this}" />
+    <aura:handler name="init" action="{!c.refresh}" value="{!this}" />
     <!-- ATTRIBUTES -->
     <aura:attribute name="weather" type="Object" />
-    <aura:attribute name="spinner" type="boolean" default="true"/>
+    <aura:attribute name="City" type="String" default="" />
+    <aura:attribute name="spinner" type="boolean" default="false"/>
+    <aura:attribute name="showForm" type="boolean" default="false"/>
     <!-- MAIN layout -->
     <lightning:layout multipleRows="true" class="wrapper">
         <!-- SPINNER -->
@@ -17,12 +19,12 @@
         </lightning:layoutItem>
         <!-- SETTINGS -->
         <lightning:layoutItem size="4" class="settings">
-            <lightning:buttonIcon iconName="utility:replace" onclick="{!c.getWetherInfo}" variant="bare" size="large" iconClass="dark" alternativeText="Settings"/>
-            <lightning:buttonIcon iconName="utility:settings" variant="bare" size="large" iconClass="dark" alternativeText="Settings"/>
+            <lightning:buttonIcon iconName="utility:replace" onclick="{!c.refresh}" variant="bare" size="large" iconClass="dark" alternativeText="Settings"/>
+            <lightning:buttonIcon iconName="utility:settings" onclick="{!c.showForm}"  variant="bare" size="large" iconClass="dark" alternativeText="Settings"/>
         </lightning:layoutItem>
         <!-- CITY -->
         <lightning:layoutItem size="12">
-            <div class="city">{!v.weather.name}</div>
+            <div class="city">{!v.weather.name}, {!v.weather.sys.country}</div>
         </lightning:layoutItem>
         <!-- DATE -->
         <lightning:layoutItem size="12" class="date">
@@ -57,5 +59,16 @@
                 {!v.weather.wind.speed} m/s
             </lightning:layoutItem>
         </lightning:layoutItem>
+        <!-- FORM SEARCH CITY -->
+        <aura:renderIf isTrue="{!v.showForm}">
+            <form class="citySetingsForm">
+                <lightning:input aura:id = "cityForm" label = "Enter your city!"
+                    value="{!v.City}"
+                    required="true"/>
+                <lightning:input aura:id = "cityDefault" type="checkbox" label="Set to default" checked="false"/>
+                <lightning:button label="Set city" onclick="{!c.setCity}" variant="brand"/>           
+                <lightning:button label="Close" onclick="{!c.showForm}" variant="destructive"/>           
+            </form>    
+        </aura:renderIf>
     </lightning:layout>
 </aura:component>
