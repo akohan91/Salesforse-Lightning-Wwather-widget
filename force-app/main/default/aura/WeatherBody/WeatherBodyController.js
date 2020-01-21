@@ -1,25 +1,28 @@
 ({
 	refresh : function (component, event, helper) {
-		helper.getWetherInfo(component);
+		helper.getWetherInfo(component, null)
 	},
 
-	setCity: function (component, event, helper) {
-		var validField 		= component.find("cityForm").get("v.validity").valid;
+	chengeCity: function (component, event, helper) {
+		var inputValue	= component.find("cityForm").get("v.value");
 		var isCityDefault 	= component.find("cityDefault").get("v.checked");
-		var city = component.get("v.City");
-
-		if (validField && isCityDefault){
-			helper.setDefaultCity(component, city);
-		} else if(validField && !isCityDefault){
+		var city 			= component.get("v.City");
+		
+		if (inputValue && !isCityDefault){
 			helper.getWetherInfo(component, city);
-			component.set("v.showForm", false);
+		} else if (inputValue && isCityDefault){
+			localStorage.setItem('myCustomSity', city);
+			helper.getWetherInfo(component, null);
 		}
 	},
 
 	showForm : function (component) {
 		var isShowForm = component.get("v.showForm");
-		
 		component.set("v.showForm", isShowForm ? false : true);
-
 	},
+
+	resetDefault : function (component, event, helper) {
+		localStorage.removeItem('myCustomSity');
+		helper.getWetherInfo(component, null);
+	}
 })

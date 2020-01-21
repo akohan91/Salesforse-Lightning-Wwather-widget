@@ -24,6 +24,8 @@
 
 	getWetherInfo : function(component, city) {
 		this.waiting(component);
+
+		city = city ? city : localStorage.getItem('myCustomSity');
 		var action = component.get("c.getWeather");
 		action.setParams({
 			"customCity": city
@@ -33,27 +35,11 @@
 			if (state === "SUCCESS") {
 				var weatherInfo = JSON.parse(response.getReturnValue());
 				component.set("v.weather", this.editWeather(weatherInfo));
+				component.set("v.showForm", false);
 				component.set("v.City", null);
 				this.doneWaiting(component);
 			}
 		});
 		$A.enqueueAction(action);
-	},
-
-	setDefaultCity : function (component, city) {
-		var action = component.get("c.setWeatherCity");
-		action.setParams({
-			"city": city
-		});
-		action.setCallback(this, function(response){
-			var state = response.getState();
-			if (state === "SUCCESS") {
-				this.getWetherInfo(component);
-				component.set("v.showForm", false);
-			}
-		});
-		
-		$A.enqueueAction(action);
 	}
-
 })

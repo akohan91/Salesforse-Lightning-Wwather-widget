@@ -1,12 +1,12 @@
 <aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,force:hasRecordId"
-    controller="WeatherControllerBack">
+    controller="WeatherControllerBack" access="global">
     <!-- HEANDRELS -->
     <aura:handler name="init" action="{!c.refresh}" value="{!this}" />
     <!-- ATTRIBUTES -->
     <aura:attribute name="weather" type="Object" />
-    <aura:attribute name="City" type="String" default="" />
+    <aura:attribute name="City" type="String"/>
     <aura:attribute name="spinner" type="boolean" default="false"/>
-    <aura:attribute name="showForm" type="boolean" default="false"/>
+    <aura:attribute name="showForm" type="boolean" />
     <!-- MAIN layout -->
     <lightning:layout multipleRows="true" class="wrapper">
         <!-- SPINNER -->
@@ -63,11 +63,14 @@
         <aura:renderIf isTrue="{!v.showForm}">
             <form class="citySetingsForm">
                 <lightning:input aura:id = "cityForm" label = "Enter your city!"
-                    value="{!v.City}"
-                    required="true"/>
+                    required="true"
+                    value="{!v.City}"/>
                 <lightning:input aura:id = "cityDefault" type="checkbox" label="Set to default" checked="false"/>
-                <lightning:button label="Set city" onclick="{!c.setCity}" variant="brand"/>           
-                <lightning:button label="Close" onclick="{!c.showForm}" variant="destructive"/>           
+                <div class="buttonsForm">
+                    <lightning:button label="Set city" onclick="{!c.chengeCity}" variant="brand"/> 
+                    <lightning:button label="Close" onclick="{!c.showForm}"/>           
+                    <lightning:button label="Reset Default" onclick="{!c.resetDefault}" variant="destructive"/>           
+                </div>          
             </form>    
         </aura:renderIf>
     </lightning:layout>

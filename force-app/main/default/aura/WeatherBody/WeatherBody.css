@@ -93,3 +93,8 @@
     padding: 15px;
     background: #ffffff;
 }
+
+.THIS .buttonsForm{
+    display: flex;
+    justify-content: space-around;
+}
